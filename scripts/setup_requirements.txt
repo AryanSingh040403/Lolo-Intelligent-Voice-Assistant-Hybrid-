@@ -1,0 +1,22 @@
+torch>=2.4.0 # Base dependency for ML
+transformers>=4.43.0 # Hugging Face core library
+peft>=0.14.0 # Parameter Efficient Fine-Tuning
+trl>=0.8.0 # TRL for SFTTrainer
+accelerate>=0.30.0 # Distributed training/CPU offload
+bitsandbytes>=0.43.0 # QLoRA 4-bit quantization
+datasets>=2.19.0 # Data handling for fine-tuning
+vllm>=0.5.0 # High-throughput LLM serving
+openai>=1.30.0 # Client for interfacing with vLLM API
+langchain>=0.2.0 # Core orchestration framework
+langchain-community>=0.0.35 # Loaders, embeddings, FAISS [8]
+langchain-openai>=0.1.7 # OpenAI API wrapper for vLLM
+faiss-cpu>=1.7.4 # Local vector store [8]
+sentence-transformers>=2.7.0 # Embedding model [9]
+wandb>=0.17.0 # Weights & Biases for MLOps tracing
+pyaudio>=0.2.14 # Microphone input for real-time STT [10]
+faster-whisper>=1.0.0 # Low-latency ASR [11]
+coqui-tts>=0.18.0 # XTTSv2 for high-quality TTS [12]
+sounddevice>=0.4.6 # Audio playback for TTS [13]
+numpy>=1.26.0
+
+

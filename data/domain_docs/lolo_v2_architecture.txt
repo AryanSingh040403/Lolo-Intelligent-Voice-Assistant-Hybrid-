@@ -1,0 +1,14 @@
+# Lolo v2.0 Architecture Specifications: Internal Development Notes
+
+## LLM and Optimization
+
+The core intelligence layer uses the Qwen1.5-1.8B-Chat model. This model was selected because it supports a 32K context length, crucial for long conversations. We run it using **4-bit quantization (AWQ/GPTQ)** via vLLM to ensure the minimal VRAM requirement of approximately 2.9GB for low-latency inference.
+
+## Retrieval System (RAG) Details
+
+The RAG component uses **FAISS** for rapid vector search and employs the **all-MiniLM-L6-v2** embedding model.
+Our official chunking strategy, designed for optimal recall, is **Recursive Character Splitting** with a `chunk_size` of **600 tokens** and a `chunk_overlap` of **100 tokens** (approx. 16.7% overlap).
+
+## Real-Time I/O Components
+
+Transcription (STT) is handled by **faster-whisper** for low latency. Audio output (TTS) uses **Coqui XTTS-v2** streaming inference at a 24kHz sampling rate, essential for achieving the **Time-to-First-Audio (TTFA)** target of under 500ms.
