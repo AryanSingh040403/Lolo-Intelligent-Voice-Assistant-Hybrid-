@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Lolo v2.0: Hybrid LLM Agent for Low-Latency Voice Interaction
 This project documents the migration of a monolithic voice assistant (Lolo) to a modern, MLOps-ready architecture utilizing a local Qwen1.5-1.8B LLM, a private RAG pipeline, and a three-threaded concurrency model for real-time voice I/O.
 
@@ -60,5 +60,5 @@ Response Groundedness	Functional (RAG)	≥0.90
 Evaluates the factuality of the generated answer against the context retrieved by the RAG tool. A score of 1.0 means the answer is fully supported by the retrieved documents, validating the RAG component's output quality.   
 
 =======
-# Lolo_v2_Project
+## Lolo_v2_Project
 >>>>>>> 8103fa6efedf7dbd2ac075d65c05aea2a638e039
