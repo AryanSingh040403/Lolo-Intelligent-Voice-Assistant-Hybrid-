@@ -22,12 +22,8 @@ Bash
 python scripts/finetune_qwen_lora.py
 Build RAG Index: Create the persistent FAISS index from documents in data/domain_docs/.
 
-Bash
-
 python scripts/rag_pipeline.py
 Start LLM Server (Deployment): Launch the high-performance vLLM API endpoint, serving the quantized Qwen model.
-
-Bash
 
 bash deployment/vllm_start_server.sh
 Run Real-Time Agent: Start the main application, which orchestrates STT, the LangChain Agent, and TTS streaming.
