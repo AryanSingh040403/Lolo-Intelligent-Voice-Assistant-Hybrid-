@@ -35,20 +35,26 @@ This **agentic rerouting** ensures correctness, speed, and grounded responses wh
 
 ## ⚙️ Technology Stack
 
-### Core AI Models
+### 🧠 Core AI Models
 
-* **LLM:** Qwen1.5‑1.8B‑Chat (4‑bit QLoRA)
-* **Embeddings:** all‑MiniLM‑L6‑v2
-* **Speech‑to‑Text (ASR):** faster‑whisper
-* **Text‑to‑Speech (TTS):** Coqui XTTS‑v2.2
+![Qwen](https://img.shields.io/badge/LLM-Qwen1.5--1.8B--Chat-4B0082?style=for-the-badge\&logo=openai\&logoColor=white)
+![MiniLM](https://img.shields.io/badge/Embeddings-all--MiniLM--L6--v2-0A66C2?style=for-the-badge)
+![Whisper](https://img.shields.io/badge/ASR-faster--whisper-FF6F00?style=for-the-badge)
+![XTTS](https://img.shields.io/badge/TTS-Coqui--XTTS--v2.2-8A2BE2?style=for-the-badge)
 
-### Frameworks & Systems
+### ⚙️ Frameworks & Systems
 
-* **LLM Serving:** vLLM (OpenAI‑compatible API)
-* **Agent Framework:** LangChain (tool‑calling agent)
-* **Vector Store:** FAISS (disk‑persisted, local)
-* **Optimization:** bitsandbytes, PEFT, QLoRA
-* **Deployment:** Docker + NVIDIA GPU
+![vLLM](https://img.shields.io/badge/vLLM-High--Throughput--Serving-006400?style=for-the-badge)
+![LangChain](https://img.shields.io/badge/LangChain-Agentic--Routing-2F855A?style=for-the-badge)
+![FAISS](https://img.shields.io/badge/FAISS-Vector--Search-0467DF?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Docker-GPU--Deployment-2496ED?style=for-the-badge\&logo=docker\&logoColor=white)
+
+### 🧪 MLOps & Deployment
+
+![QLoRA](https://img.shields.io/badge/QLoRA-4--bit--Quantization-B83280?style=for-the-badge)
+![PEFT](https://img.shields.io/badge/PEFT-Adapter--Training-6A5ACD?style=for-the-badge)
+![W\&B](https://img.shields.io/badge/Weights%20%26%20Biases-Monitoring-FFBE00?style=for-the-badge)
+![NVIDIA](https://img.shields.io/badge/NVIDIA-GPU--Required-76B900?style=for-the-badge\&logo=nvidia\&logoColor=white)
 
 ---
 
