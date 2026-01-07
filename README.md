@@ -1,60 +1,130 @@
+# 🧠 Lolo v2.0 — Hybrid Low-Latency LLM Agent
 
-Lolo v2.0: Hybrid LLM Agent for Low-Latency Voice Interaction
-This project documents the migration of a monolithic voice assistant (Lolo) to a modern, MLOps-ready architecture utilizing a local Qwen1.5-1.8B LLM, a private RAG pipeline, and a three-threaded concurrency model for real-time voice I/O.
+A **production-grade hybrid LLM agent** designed for **real-time voice interaction**, combining **local cognition (RAG, tools)** with a **high‑performance LLM inference server**. The system is architected with **latency as a first‑class constraint**, achieving near‑human conversational fluency through concurrency, optimized model serving, and intelligent agent routing.
 
-1. Prerequisites and Setup
-Environment: Ensure you have Python (3.10+) and a GPU with CUDA support for accelerated inference.
+---
 
-Virtual Environment: Create and activate a Python virtual environment (.venv).
+## 🚀 Project Overview
 
-Dependencies: Install libraries listed in scripts/setup_requirements.txt.
+**Lolo v2.0** upgrades a traditional desktop voice assistant into a **cognitive hybrid AI agent** capable of:
 
-Weights & Biases (W&B): Set your API key environment variable for MLOps tracing.bash
-export WANDB_API_KEY="your_api_key"
+* Real‑time speech understanding and response
+* Intelligent decision‑making via agentic routing
+* Grounded answers using local Retrieval‑Augmented Generation (RAG)
+* Desktop and utility control through function calling
 
-2. Execution Flow
-Follow these steps to build the knowledge base and run the agent:
+🔑 **Primary Objective:**
 
-Fine-Tune Model (Optional but Recommended): Run the QLoRA script to specialize Qwen for function calling. The adapter weights are saved to models/qwen_qlora_adapter/.
+> **Low‑latency conversational fluency with Time‑to‑First‑Audio (TTFA) ≤ 500 ms**
 
-Bash
+This objective directly drives the system’s **concurrent, multi‑threaded pipeline** and **local-first architecture**.
 
-python scripts/finetune_qwen_lora.py
-Build RAG Index: Create the persistent FAISS index from documents in data/domain_docs/.
+---
 
-python scripts/rag_pipeline.py
-Start LLM Server (Deployment): Launch the high-performance vLLM API endpoint, serving the quantized Qwen model.
+## 🧠 Cognitive Architecture
 
-bash deployment/vllm_start_server.sh
-Run Real-Time Agent: Start the main application, which orchestrates STT, the LangChain Agent, and TTS streaming.
+The agent dynamically routes user intent through one of three execution paths:
 
-Bash
+1. **RAG Tooling** — For domain‑specific or document‑grounded queries
+2. **Function Calling** — For deterministic desktop or utility actions
+3. **LLM Reasoning** — For general conversational intelligence
 
-python scripts/realtime_agent.py
-Validate MLOps Trace: Run the setup script to test the Agent's routing logic and log the trace to W&B Prompts.
+This **agentic rerouting** ensures correctness, speed, and grounded responses while minimizing unnecessary LLM computation.
 
-Bash
+---
 
-python scripts/wandb_setup.py
-3. MLOps Validation Metrics (W&B Dashboard)
-To prove the success of this voice assistant upgrade, the AIML Engineer should monitor a blend of real-time latency and functional quality metrics.
+## ⚙️ Technology Stack
 
-Metric	Type	Target	Measurement & Significance
-Time to First Audio (TTFA)	Latency (E2E)	≤500 ms	
-Primary KPI for User Experience. Measures the total time from End-of-Speech (EOS) detection by faster-whisper until the first byte of synthesized audio is played by Coqui TTS.   
+### Core AI Models
 
-Time to First Token (TTFT)	Latency (LLM)	≤350 ms	
-Time from vLLM request submission to the first token output. Measures the efficiency of the pre-fill and reasoning phase; monitored via WandbTracer on the LLM span.   
+* **LLM:** Qwen1.5‑1.8B‑Chat (4‑bit QLoRA)
+* **Embeddings:** all‑MiniLM‑L6‑v2
+* **Speech‑to‑Text (ASR):** faster‑whisper
+* **Text‑to‑Speech (TTS):** Coqui XTTS‑v2.2
 
-Tokens Per Second (TPS)	Latency (Throughput)	≥100 TPS	
-The token generation rate during LLM streaming. High TPS ensures the model output consistently outpaces the TTS synthesis rate, preventing choppiness in audio output.   
+### Frameworks & Systems
 
-Tool Call Accuracy	Functional	≥95%	
-Measures the precision with which the fine-tuned Qwen model correctly identifies the required tool (RAG or calculator) and generates a valid, structured JSON argument payload. Monitored against ground truth data in W&B traces.   
+* **LLM Serving:** vLLM (OpenAI‑compatible API)
+* **Agent Framework:** LangChain (tool‑calling agent)
+* **Vector Store:** FAISS (disk‑persisted, local)
+* **Optimization:** bitsandbytes, PEFT, QLoRA
+* **Deployment:** Docker + NVIDIA GPU
 
-Response Groundedness	Functional (RAG)	≥0.90	
-Evaluates the factuality of the generated answer against the context retrieved by the RAG tool. A score of 1.0 means the answer is fully supported by the retrieved documents, validating the RAG component's output quality.   
+---
 
-=======
-## Lolo_v2_Project
->>>>>>> 8103fa6efedf7dbd2ac075d65c05aea2a638e039
+## 🔄 Inference & Execution Pipeline
+
+The system follows a **strict execution order** to ensure stability and performance:
+
+1. **Environment Reset** — Clean virtual environment
+2. **Dependency Installation** — Version‑pinned stable stack
+3. **QLoRA Fine‑Tuning** — Function‑calling adapter training
+4. **RAG Indexing** — Local FAISS index construction
+5. **LLM Deployment** — vLLM GPU server via Docker
+6. **Diagnostics** — Agent tracing & latency monitoring
+7. **Live Execution** — Real‑time voice agent
+
+The live agent uses a **producer–consumer concurrency model**, running **ASR, LLM inference, and TTS in parallel** to mask latency.
+
+---
+
+## 📊 Performance & Evaluation
+
+Latency and correctness are treated as **core KPIs**:
+
+| Metric                    | Dimension          | Target   |
+| ------------------------- | ------------------ | -------- |
+| **TTFA**                  | End‑to‑End Latency | ≤ 500 ms |
+| **TTFT**                  | LLM Responsiveness | ≤ 350 ms |
+| **Tool Call Accuracy**    | Cognitive Routing  | ≥ 95%    |
+| **Response Groundedness** | RAG Quality        | ≥ 0.90   |
+
+Latency tracing and agent decision paths are monitored via **Weights & Biases (W&B)**.
+
+---
+
+## 🧩 Data Preparation & RAG Design
+
+* **Recursive, token‑aware chunking**
+* Chunk size: **600 tokens**
+* Overlap: **100 tokens**
+* Optimized for **high recall** and **low retrieval latency**
+
+FAISS indices are persisted locally to ensure **sub‑second similarity search** without network dependency.
+
+---
+
+## 🛠️ Prerequisites
+
+* **Python:** ≤ 3.12 *(Python ≥ 3.13 is incompatible)*
+* **Hardware:** NVIDIA GPU (required)
+* **OS:** Linux / Windows (with manual audio driver setup)
+
+> ⚠️ All dependencies **must** be installed using the pinned versions provided. Deviations may break compatibility.
+
+---
+
+## ⚠️ Limitations & Disclaimer
+
+* **Dependency Fragility:** The stack relies on strict version pinning (bitsandbytes, vLLM, Coqui TTS)
+* **Cold Start Cost:** Initial model downloads exceed 4GB; subsequent runs are cached
+* **Audio I/O:** `pyaudio` and `sounddevice` may require manual system‑level configuration
+
+---
+
+## 📌 Why This Project Matters
+
+This project demonstrates:
+
+* Systems‑level thinking for **real‑time AI**
+* Practical **LLM optimization and deployment**
+* Agentic reasoning beyond simple prompt pipelines
+* Production‑style monitoring and evaluation
+
+It is designed as a **foundation for research, open‑source extension, and real‑world GenAI systems**.
+
+---
+
+## 🤝 Contributions
+
+Contributions, discussions, and improvements are welcome. Feel free to open an issue or submit a pull request.
