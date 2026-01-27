@@ -21,7 +21,6 @@ AUDIO_FORMAT = 8   # pyaudio.paInt16
 
 class RealTimeVoiceAgent:
     """
-    Implements a three-threaded Producer-Consumer pipeline for real-time voice interaction:
     1. STT Producer (Mic Capture)
     2. LLM Worker (ASR Processing & Agent Execution)
     3. TTS Consumer (Audio Synthesis & Playback)
