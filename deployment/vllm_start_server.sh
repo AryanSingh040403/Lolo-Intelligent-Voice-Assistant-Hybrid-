@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to launch the vLLM OpenAI-compatible API server for the Qwen Agent
 
-MODEL_NAME="Qwen/Qwen1.5-1.8B-Chat"
+MODEL_NAME=""
 QUANTIZATION_TYPE="awq" # Assuming AWQ/GPTQ quantized version is used for production low-latency
 DTYPE="bfloat16" # Use bfloat16 for computation if supported by GPU
 
