@@ -133,3 +133,4 @@ It is designed as a **foundation for research, open-source extension, and real-w
 ## 🤝 Contributions
 
 Contributions, discussions, and improvements are welcome. Please open an issue or submit a pull request.
+MODEL_NAME="Qwen/Qwen1.5-1.8B-Chat"
