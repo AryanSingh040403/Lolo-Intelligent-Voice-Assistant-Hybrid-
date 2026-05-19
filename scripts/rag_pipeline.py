@@ -9,7 +9,7 @@ from langchain_core.documents import Document
 # --- Configuration & Setup ---
 CHUNK_SIZE_TOKENS = 600
 CHUNK_OVERLAP_TOKENS = 100 
-EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL_NAME = "your_model_name_here"  # Replace with your model name
 FAISS_INDEX_PATH = "../models/faiss_index_local"
 DOCUMENTS_PATH = "../data/domain_docs" 
 
