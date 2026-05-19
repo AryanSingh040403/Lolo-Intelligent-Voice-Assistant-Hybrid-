@@ -67,12 +67,6 @@ def create_and_save_vectorstore(chunks: List, embeddings: HuggingFaceEmbeddings)
     # Create index from documents and embeddings
     vector_store = FAISS.from_documents(chunks, embeddings)
     
-    # Save the index for persistence [8]
-    vector_store.save_local(FAISS_INDEX_PATH)
-    print(f"FAISS index saved locally to {FAISS_INDEX_PATH}.")
-        # Save the index for persistence [8]
-    vector_store.save_local(FAISS_INDEX_PATH)
-    print(f"FAISS index saved locally to {FAISS_INDEX_PATH}.")
 
 # --- Pipeline Execution ---
 if __name__ == "__main__":
