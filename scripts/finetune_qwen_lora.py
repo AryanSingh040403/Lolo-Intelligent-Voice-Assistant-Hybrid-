@@ -12,9 +12,9 @@ from peft import LoraConfig, prepare_model_for_kbit_training
 from trl import SFTTrainer
 
 # --- 1. Configuration ---
-MODEL_ID = "Qwen/Qwen1.5-1.8B-Chat" # Base model for QLoRA fine-tuning
+MODEL_ID = "your_model_name_here"  # Replace with your model name
 OUTPUT_DIR = "../models/qwen_qlora_adapter"
-DATASET_PATH = "../data/qwen_tool_data.jsonl" 
+DATASET_PATH = "your_dataset_path_here" # Replace it with the PAth 
 
 # Training Parameters
 CONTEXT_LENGTH = 2048 # Max sequence length
